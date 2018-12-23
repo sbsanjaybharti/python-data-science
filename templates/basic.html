@@ -9,6 +9,9 @@ body {
   background: #353535;
   color: #FFF;
 }
+.jumbotron {
+    margin-bottom:0px;
+}
 .jumbotron h1 {
   color: #353535;
 }
@@ -129,7 +132,9 @@ a.animated-button.victoria-two:after {
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
         <a href="{{ url_for('basic') }}" class="btn btn-sm animated-button victoria-one">Basic plot</a>
-        <a href="/exec2" class="btn btn-sm animated-button victoria-one">Start Training the Model</a>
+        <a href="{{ url_for('barChartOne') }}" class="btn btn-sm animated-button victoria-one">Simple Bar Chart</a>
+        <a href="{{ url_for('barChartTwo') }}" class="btn btn-sm animated-button victoria-one">Increasing Bar Chart</a>
+        <a href="{{ url_for('barChartLine') }}" class="btn btn-sm animated-button victoria-one">Line Bar Chart</a>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
         {% block content %}
