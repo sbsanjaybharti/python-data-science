@@ -10,8 +10,23 @@ def index():
 @app.route('/plot/basic')
 def basic(name=None):
     from plot_basic import basic
+
+    years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+    gdp = [300.2, 543.3, 1075.9, 2862.5, 5979.6, 10289.7, 14958.3, 15900.8, 20122.7]
     basic_obj = basic()
-    data = basic_obj.plot_basic()
+    data = basic_obj.plot_basic(years, gdp)
+    return render_template('plot/basic.html', name=data, title='Basic Plot')
+
+@app.route('/plot/scattered')
+def scatteredPlot(name=None):
+    from plot_basic import basic
+
+    friends = [70, 65, 72, 63, 71, 64, 60, 64, 67]
+    minutes = [176, 170, 205, 120, 220, 130, 105, 145, 190]
+    labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+
+    basic_obj = basic()
+    data = basic_obj.scatter(friends, minutes, labels)
     return render_template('plot/basic.html', name=data, title='Basic Plot')
 
 @app.route('/bar/chart/one')
