@@ -1,0 +1,26 @@
+{% extends 'basic.html' %}
+{% block content %}
+<h2>{{title}}</h2>
+<table>
+    <tr>
+        <td>Matrix shape </td>
+        <td>: {{value.shape}}</td>
+    </tr>
+    <tr>
+        <td> Matrix row </td>
+        <td>: {{value.row}}</td>
+    </tr>
+    <tr>
+        <td>Matrix column </td>
+        <td>: {{value.column}}</td>
+    </tr>
+    <tr>
+        <td>Identity Matrix </td>
+        <td>: {{value.identity_matrix}}</td>
+    </tr>
+    <tr>
+        <td>Shape Identity Matrix </td>
+        <td>: {{value.shape_identity_matrix}}</td>
+    </tr>
+</table>
+{% endblock %}

@@ -7,6 +7,8 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
+# noinspection PyInterpreter
 @app.route('/plot/basic')
 def basic(name=None):
     from plot_basic import basic
@@ -27,7 +29,7 @@ def scatteredPlot(name=None):
 
     basic_obj = basic()
     data = basic_obj.scatter(friends, minutes, labels)
-    return render_template('plot/basic.html', name=data, title='Basic Plot')
+    return render_template('plot/basic.html', name=data, title='Scattered Plot')
 
 @app.route('/bar/chart/one')
 def barChartOne(name=None):
@@ -61,6 +63,36 @@ def barChartLine(name=None):
     basic_obj = barChart()
     data = basic_obj.ChartLine(variance, bias_squared)
     return render_template('plot/basic.html', name=data, title='Line Bar Chart ')
+
+@app.route('/plot/vector')
+def vector(name=None):
+    from Linear_Algebra.vector import vector
+
+    hight_weight_age = [70, 170, 40]
+    grade = [95, 80, 75, 62]
+    linear_algebra = vector()
+    vector_add = linear_algebra.add(hight_weight_age, grade)
+    vector_dot = linear_algebra.dot(hight_weight_age, grade)
+    return render_template('linear_algebra/vector.html', add_value=vector_add, dot_value=vector_dot, title='Vector Spaces in linear algebra')
+
+@app.route('/plot/matrices')
+def matrices(name=None):
+    from Linear_Algebra.matrix import matrix
+
+    a = [[1,2,3],[4,5,6]]
+    b = [[1,2], [3,4], [5,6]]
+    matrix = matrix()
+    shape = matrix.shape(a)
+    identity_matrix = matrix.make_matrix(5, 5, matrix.is_diagonal)
+    #shape = matrix.shape(a)
+    # matrix = matrix.dot(hight_weight_age, grade)
+    value_dict = {}
+    value_dict['shape'] = shape
+    value_dict['row'] = matrix.get_row(a, 0)
+    value_dict['column'] = matrix.get_column(b, 0)
+    value_dict['identity_matrix'] = identity_matrix
+    value_dict['shape_identity_matrix'] = matrix.shape(identity_matrix)
+    return render_template('linear_algebra/matrix.html', value = value_dict, title='Matrices in linear algebra')
 
 if __name__ == "__main__":
     app.run(debug=True)
